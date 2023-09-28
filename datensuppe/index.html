@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Datenmasseur</title>
+</head>
+
+<body>
+
+	<script>
+
+		function countWordOccurrences(inputString, word) {
+			const regex = new RegExp("\\b" + word + "\\b", "gi");
+			const matches = inputString.match(regex);
+			return matches ? matches.length : 0;
+		}
+
+		function replaceWord(inputString, targetWord, replacementWord) {
+			const regex = new RegExp("\\b" + targetWord + "\\b", "gi");
+			return inputString.replace(regex, replacementWord);
+		}
+
+		async function loader(file) {
+
+			//load file
+			let response = await fetch(file);
+			let data = await response.text();
+
+			//remove empty spaces
+			let trimmed = data.replace(/\s+/g, '');
+
+			//remove " characters
+			trimmed = trimmed.replace(/"/g, '');
+
+			//example: replace "Omar" with "Elly"
+			trimmed = replaceWord(trimmed, "Omar", "Elly");
+
+			//example: count how many "Elly"
+			console.log(countWordOccurrences(trimmed, "Elly"));
+
+			//split long text into array entries
+			let splitted = trimmed.split(",");
+
+			//define how many rows
+			let rows = 5;
+
+			//create object to collect data
+			let personen = {};
+
+			//create object for naming subobjects
+			let person;
+
+			//go through each array entry
+			for (let i = 0; i < splitted.length; i++) {
+
+				//first row
+				if (i % rows === 0) {
+					person = splitted[i]; //define name of row
+					personen[person] = []; //create array
+				} else {
+					personen[person].push(splitted[i]); //fill array
+				}
+			}
+
+			//log data into console
+			console.log(personen);
+		}
+
+		//start loading
+		loader("biostats.csv");
+
+	</script>
+
+</body>
+
+</html>
