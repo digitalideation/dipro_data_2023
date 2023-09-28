@@ -28,40 +28,25 @@
 			let response = await fetch(file);
 			let data = await response.text();
 
-			console.log(data);
+			console.log(data); //low raw data
 
-			//replace line break with comma
-			let cleaned = data.replace(/\n/g, ",");
+			data = data.replace(/\n/g, ","); //replace line break with comma
+			data = data.replace(/\s+/g, ''); //remove empty spaces
+			data = data.replace(/"/g, ''); //remove " characters
+			
+			data = replaceWord(data, "Omar", "Elly"); //example: replace "Omar" with "Elly"
+			console.log("How many Ellies", countWordOccurrences(data, "Elly")); //example: count how many "Elly"
 
-			//remove empty spaces
-			cleaned = cleaned.replace(/\s+/g, '');
+			let splitted = data.split(","); //split long text into array entries
+			let rows = 5; //define how many rows
+			
+			let personen = {}; //create object to collect data
+			let person; //create object for naming subobjects
 
-			//remove " characters
-			cleaned = cleaned.replace(/"/g, '');
+			for (let i = 0; i < splitted.length; i++) { //go through each array entry
 
-			//example: replace "Omar" with "Elly"
-			cleaned = replaceWord(cleaned, "Omar", "Elly");
 
-			//example: count how many "Elly"
-			console.log(countWordOccurrences(cleaned, "Elly"));
-
-			//split long text into array entries
-			let splitted = cleaned.split(",");
-
-			//define how many rows
-			let rows = 5;
-
-			//create object to collect data
-			let personen = {};
-
-			//create object for naming subobjects
-			let person;
-
-			//go through each array entry
-			for (let i = 0; i < splitted.length; i++) {
-
-				//first row
-				if (i % rows === 0) {
+				if (i % rows === 0) { //first row entry
 					person = splitted[i]; //define name of row
 					personen[person] = []; //create array
 				} else {
@@ -69,12 +54,18 @@
 				}
 			}
 
-			//log data into console
-			console.log(personen);
-		}
+			console.log("as object", personen); //log object into console
 
-		//start loading
-		loader("biostats.csv");
+
+			let array = []; //feed data into twodimensional array
+			for (let i = 0; i < splitted.length; i++) {
+				if (i % rows === 0) array.push([]);
+				array[(array.length - 1)].push(splitted[i]);
+			}
+			console.log("as two dimensional array", array); //log array into console
+		}
+		
+		loader("biostats.csv"); //start loading
 
 	</script>
 
