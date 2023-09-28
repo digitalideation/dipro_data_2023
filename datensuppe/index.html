@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Datenmasseur</title>
+	<title>Datensuppe</title>
 </head>
 
 <body>
@@ -28,20 +28,25 @@
 			let response = await fetch(file);
 			let data = await response.text();
 
+			console.log(data);
+
+			//replace line break with comma
+			let cleaned = data.replace(/\n/g, ",");
+
 			//remove empty spaces
-			let trimmed = data.replace(/\s+/g, '');
+			cleaned = cleaned.replace(/\s+/g, '');
 
 			//remove " characters
-			trimmed = trimmed.replace(/"/g, '');
+			cleaned = cleaned.replace(/"/g, '');
 
 			//example: replace "Omar" with "Elly"
-			trimmed = replaceWord(trimmed, "Omar", "Elly");
+			cleaned = replaceWord(cleaned, "Omar", "Elly");
 
 			//example: count how many "Elly"
-			console.log(countWordOccurrences(trimmed, "Elly"));
+			console.log(countWordOccurrences(cleaned, "Elly"));
 
 			//split long text into array entries
-			let splitted = trimmed.split(",");
+			let splitted = cleaned.split(",");
 
 			//define how many rows
 			let rows = 5;
