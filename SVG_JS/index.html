@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SVG Shape Manipulation</title>
+    <link rel="stylesheet" type="text/css" href="hack.css">
+
 </head>
-<body>
-    <h1>SVG Shape Manipulation</h1>
-    
+
+<body class="hack">
+    <h1>Simple SVG Shape Manipulation</h1>
+
     <!-- Buttons for shape manipulation -->
-    <button id="showHideButton">Show/Hide Rectangle</button>
-    <button id="bringToFrontButton">Bring to Front</button>
-    <button id="changeOpacityButton">Change Opacity</button>
-    
+    <div class="btn-group" >
+        <button id="showHideButton" class="btn btn-success btn-ghost">Show/Hide Sun</button>
+        <button id="changeOpacityButton" class="btn btn-success btn-ghost">Change Opacity</button>
+        <button id="scaleButton" class="btn btn-success btn-ghost">Scale Sun</button>
+    </div>
+
+    <hr/>
+
     <!-- SVG container -->
-    <svg width="300" height="150" id="svgContainer">
-        <rect width="100" height="50" fill="blue" id="rectangle" opacity="1"></rect>
+    <svg id="visual" viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+        <path id="path_one" d="M0 175L13.7 174C27.3 173 54.7 171 82 155C109.3 139 136.7 109 163.8 111C191 113 218 147 245.2 157C272.3 167 299.7 153 327 138C354.3 123 381.7 107 409 121C436.3 135 463.7 179 491 196C518.3 213 545.7 203 573 191C600.3 179 627.7 165 654.8 168C682 171 709 191 736.2 188C763.3 185 790.7 159 818 156C845.3 153 872.7 173 886.3 183L900 193L900 0L886.3 0C872.7 0 845.3 0 818 0C790.7 0 763.3 0 736.2 0C709 0 682 0 654.8 0C627.7 0 600.3 0 573 0C545.7 0 518.3 0 491 0C463.7 0 436.3 0 409 0C381.7 0 354.3 0 327 0C299.7 0 272.3 0 245.2 0C218 0 191 0 163.8 0C136.7 0 109.3 0 82 0C54.7 0 27.3 0 13.7 0L0 0Z" fill="#6198ff"></path>
+        <path id="path_two" d="M0 265L13.7 278C27.3 291 54.7 317 82 310C109.3 303 136.7 263 163.8 262C191 261 218 299 245.2 303C272.3 307 299.7 277 327 251C354.3 225 381.7 203 409 210C436.3 217 463.7 253 491 268C518.3 283 545.7 277 573 275C600.3 273 627.7 275 654.8 282C682 289 709 301 736.2 287C763.3 273 790.7 233 818 237C845.3 241 872.7 289 886.3 313L900 337L900 191L886.3 181C872.7 171 845.3 151 818 154C790.7 157 763.3 183 736.2 186C709 189 682 169 654.8 166C627.7 163 600.3 177 573 189C545.7 201 518.3 211 491 194C463.7 177 436.3 133 409 119C381.7 105 354.3 121 327 136C299.7 151 272.3 165 245.2 155C218 145 191 111 163.8 109C136.7 107 109.3 137 82 153C54.7 169 27.3 171 13.7 172L0 173Z" fill="#3c80ff"></path>
+        <path id="path_three" d="M0 301L13.7 319C27.3 337 54.7 373 82 376C109.3 379 136.7 349 163.8 349C191 349 218 379 245.2 382C272.3 385 299.7 361 327 336C354.3 311 381.7 285 409 283C436.3 281 463.7 303 491 313C518.3 323 545.7 321 573 320C600.3 319 627.7 319 654.8 325C682 331 709 343 736.2 338C763.3 333 790.7 311 818 325C845.3 339 872.7 389 886.3 414L900 439L900 335L886.3 311C872.7 287 845.3 239 818 235C790.7 231 763.3 271 736.2 285C709 299 682 287 654.8 280C627.7 273 600.3 271 573 273C545.7 275 518.3 281 491 266C463.7 251 436.3 215 409 208C381.7 201 354.3 223 327 249C299.7 275 272.3 305 245.2 301C218 297 191 259 163.8 260C136.7 261 109.3 301 82 308C54.7 315 27.3 289 13.7 276L0 263Z" fill="#0066ff"></path>
+        <path id="path_four" d="M0 523L13.7 527C27.3 531 54.7 539 82 543C109.3 547 136.7 547 163.8 540C191 533 218 519 245.2 509C272.3 499 299.7 493 327 494C354.3 495 381.7 503 409 507C436.3 511 463.7 511 491 517C518.3 523 545.7 535 573 537C600.3 539 627.7 531 654.8 533C682 535 709 547 736.2 543C763.3 539 790.7 519 818 511C845.3 503 872.7 507 886.3 509L900 511L900 437L886.3 412C872.7 387 845.3 337 818 323C790.7 309 763.3 331 736.2 336C709 341 682 329 654.8 323C627.7 317 600.3 317 573 318C545.7 319 518.3 321 491 311C463.7 301 436.3 279 409 281C381.7 283 354.3 309 327 334C299.7 359 272.3 383 245.2 380C218 377 191 347 163.8 347C136.7 347 109.3 377 82 374C54.7 371 27.3 335 13.7 317L0 299Z" fill="#0059dd"></path>
+        <path id="path_five" d="M0 601L13.7 601C27.3 601 54.7 601 82 601C109.3 601 136.7 601 163.8 601C191 601 218 601 245.2 601C272.3 601 299.7 601 327 601C354.3 601 381.7 601 409 601C436.3 601 463.7 601 491 601C518.3 601 545.7 601 573 601C600.3 601 627.7 601 654.8 601C682 601 709 601 736.2 601C763.3 601 790.7 601 818 601C845.3 601 872.7 601 886.3 601L900 601L900 509L886.3 507C872.7 505 845.3 501 818 509C790.7 517 763.3 537 736.2 541C709 545 682 533 654.8 531C627.7 529 600.3 537 573 535C545.7 533 518.3 521 491 515C463.7 509 436.3 509 409 505C381.7 501 354.3 493 327 492C299.7 491 272.3 497 245.2 507C218 517 191 531 163.8 538C136.7 545 109.3 545 82 541C54.7 537 27.3 529 13.7 525L0 521Z" fill="#004cbb"></path>
+        <circle id="sun" r="200" pathLength="60" cx="450" cy="300" fill="rgb(200,0,0)" opacity="1"/>
     </svg>
 
     <!-- JavaScript for shape manipulation -->
     <script>
         // Get SVG elements and buttons
-        const svgContainer = document.getElementById('svgContainer');
-        const rectangle = document.getElementById('rectangle');
+        const sun = document.getElementById('sun');
+
+
         const showHideButton = document.getElementById('showHideButton');
-        const bringToFrontButton = document.getElementById('bringToFrontButton');
+        const scaleButton = document.getElementById('scaleButton');
         const changeOpacityButton = document.getElementById('changeOpacityButton');
 
         // Event listeners for buttons
         showHideButton.addEventListener('click', () => {
-            if (rectangle.style.display === 'none' || rectangle.style.display === '') {
-                rectangle.style.display = 'block';
+            if (sun.style.display === 'none' ) {
+                sun.style.display = 'block';
             } else {
-                rectangle.style.display = 'none';
+                sun.style.display = 'none';
             }
         });
 
-        bringToFrontButton.addEventListener('click', () => {
-            svgContainer.appendChild(rectangle);
+        scaleButton.addEventListener('click', () => {
+            sun.style.transformOrigin="center"
+            sun.style.transform ="scale(0.5)"
         });
 
         changeOpacityButton.addEventListener('click', () => {
-            const currentOpacity = parseFloat(rectangle.getAttribute('opacity'));
+            const currentOpacity = parseFloat(sun.getAttribute('opacity'));
             const newOpacity = currentOpacity === 1 ? 0.5 : 1;
-            rectangle.setAttribute('opacity', newOpacity);
+            sun.setAttribute('opacity', newOpacity);
         });
     </script>
 </body>
+
 </html>
