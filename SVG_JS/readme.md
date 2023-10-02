@@ -1,0 +1,1 @@
+Einfaches Beispiel, das zeigt, wie SVG Elemente über JavaScript verändert werden können
