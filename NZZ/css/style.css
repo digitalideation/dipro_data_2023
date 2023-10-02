@@ -1,0 +1,104 @@
+body {
+  background: #253a37;
+  margin: 0%;
+}
+
+div {
+  border-color: rgb(255, 0, 0);
+}
+
+.noscrolly {
+  padding: 0;
+  max-width: 60rem;
+  margin: 0;
+  margin-left: 35px;
+  margin-right: 35px
+}
+
+.citation {
+  padding: 0;
+  max-width: 60rem;
+  margin: 0;
+  margin-left: 35px;
+  margin-right: 35px;
+  font-size: 12px;
+}
+
+h1 {
+  font-family: PensumPro-Regular, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 35px;
+  color: rgb(255, 255, 255);
+}
+
+h2 {
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: rgb(255, 255, 255);
+}
+
+
+p {
+  font-family: PensumPro-Regular, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: rgb(255, 255, 255);
+}
+
+
+.article {
+  position: relative;
+  padding: 0;
+  max-width: 22rem;
+  margin: 0;
+}
+
+.figure {
+  position: -webkit-sticky;
+  position: sticky;
+  display: flex;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  margin: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: 0;
+}
+
+.step {
+  margin: 0 auto 0 auto;
+  padding: 0;
+  height: 150vh;
+  margin-left: 21px;
+  margin-right: 15px;
+}
+
+.step p {
+  text-align: left;
+  font-size: 18px;
+  line-height: 28px;
+  font-family:PensumPro-Regular, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  color: rgb(255, 255, 255);
+  margin: 0;
+  padding: 10px 10px 10px 18px;
+  background-color: #253a3775;
+}
+
+.sticky-img {
+  margin: 0;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}

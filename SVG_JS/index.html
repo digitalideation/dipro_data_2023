@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Shape Manipulation</title>
+</head>
+<body>
+    <h1>SVG Shape Manipulation</h1>
+    
+    <!-- Buttons for shape manipulation -->
+    <button id="showHideButton">Show/Hide Rectangle</button>
+    <button id="bringToFrontButton">Bring to Front</button>
+    <button id="changeOpacityButton">Change Opacity</button>
+    
+    <!-- SVG container -->
+    <svg width="300" height="150" id="svgContainer">
+        <rect width="100" height="50" fill="blue" id="rectangle" opacity="1"></rect>
+    </svg>
+
+    <!-- JavaScript for shape manipulation -->
+    <script>
+        // Get SVG elements and buttons
+        const svgContainer = document.getElementById('svgContainer');
+        const rectangle = document.getElementById('rectangle');
+        const showHideButton = document.getElementById('showHideButton');
+        const bringToFrontButton = document.getElementById('bringToFrontButton');
+        const changeOpacityButton = document.getElementById('changeOpacityButton');
+
+        // Event listeners for buttons
+        showHideButton.addEventListener('click', () => {
+            if (rectangle.style.display === 'none' || rectangle.style.display === '') {
+                rectangle.style.display = 'block';
+            } else {
+                rectangle.style.display = 'none';
+            }
+        });
+
+        bringToFrontButton.addEventListener('click', () => {
+            svgContainer.appendChild(rectangle);
+        });
+
+        changeOpacityButton.addEventListener('click', () => {
+            const currentOpacity = parseFloat(rectangle.getAttribute('opacity'));
+            const newOpacity = currentOpacity === 1 ? 0.5 : 1;
+            rectangle.setAttribute('opacity', newOpacity);
+        });
+    </script>
+</body>
+</html>

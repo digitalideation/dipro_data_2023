@@ -35,7 +35,7 @@ function setup() {
    
     
     textSize(11)
-    //console.log(cantons)
+    console.log(cantons)
 
     noLoop();
 }
