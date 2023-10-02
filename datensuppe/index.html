@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Datensuppe</title>
+</head>
+
+<body>
+
+	<script>
+
+		function countWordOccurrences(inputString, word) {
+			const regex = new RegExp("\\b" + word + "\\b", "gi");
+			const matches = inputString.match(regex);
+			return matches ? matches.length : 0;
+		}
+
+		function replaceWord(inputString, targetWord, replacementWord) {
+			const regex = new RegExp("\\b" + targetWord + "\\b", "gi");
+			return inputString.replace(regex, replacementWord);
+		}
+
+		async function loader(file) {
+
+			//load file
+			let response = await fetch(file);
+			let data = await response.text();
+
+			console.log(data); //low raw data
+
+			data = data.replace(/\n/g, ","); //replace line break with comma
+			data = data.replace(/\s+/g, ''); //remove empty spaces
+			data = data.replace(/"/g, ''); //remove " characters
+			
+			data = replaceWord(data, "Omar", "Elly"); //example: replace "Omar" with "Elly"
+			console.log("How many Ellies", countWordOccurrences(data, "Elly")); //example: count how many "Elly"
+
+			let splitted = data.split(","); //split long text into array entries
+			let rows = 5; //define how many rows
+			
+			let personen = {}; //create object to collect data
+			let person; //create object for naming subobjects
+
+			for (let i = 0; i < splitted.length; i++) { //go through each array entry
+
+
+				if (i % rows === 0) { //first row entry
+					person = splitted[i]; //define name of row
+					personen[person] = []; //create array
+				} else {
+					personen[person].push(splitted[i]); //fill array
+				}
+			}
+
+			console.log("as object", personen); //log object into console
+
+
+			let array = []; //feed data into twodimensional array
+			for (let i = 0; i < splitted.length; i++) {
+				if (i % rows === 0) array.push([]);
+				array[(array.length - 1)].push(splitted[i]);
+			}
+			console.log("as two dimensional array", array); //log array into console
+		}
+		
+		loader("biostats.csv"); //start loading
+
+	</script>
+
+</body>
+
+</html>
