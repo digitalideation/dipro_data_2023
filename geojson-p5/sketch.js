@@ -63,11 +63,11 @@ function setup() {
     mapX2 = width - 30;
     mapY2 = height - 25;
     stroke(0);
-    convertGeojsonProjection();
-    drawGeojsonProjection();
-   // drawd3Projection();
+    //convertGeojsonProjection();
+    //drawGeojsonProjection();
+    drawd3Projection();
 
-    drawgeojson();
+    //drawgeojson();
 
     legende()
 
