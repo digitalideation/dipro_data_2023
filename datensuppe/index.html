@@ -28,7 +28,7 @@
 			let response = await fetch(file);
 			let data = await response.text();
 
-			console.log(data); //low raw data
+			console.log(data); //log raw data
 
 			data = data.replace(/\n/g, ","); //replace line break with comma
 			data = data.replace(/\s+/g, ''); //remove empty spaces
@@ -44,8 +44,6 @@
 			let person; //create object for naming subobjects
 
 			for (let i = 0; i < splitted.length; i++) { //go through each array entry
-
-
 				if (i % rows === 0) { //first row entry
 					person = splitted[i]; //define name of row
 					personen[person] = []; //create array
@@ -53,11 +51,9 @@
 					personen[person].push(splitted[i]); //fill array
 				}
 			}
-
 			console.log("as object", personen); //log object into console
 
-
-			let array = []; //feed data into twodimensional array
+			let array = []; //feed data into two dimensional array
 			for (let i = 0; i < splitted.length; i++) {
 				if (i % rows === 0) array.push([]);
 				array[(array.length - 1)].push(splitted[i]);
